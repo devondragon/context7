@@ -2,7 +2,7 @@
 
 [![Website](https://img.shields.io/badge/Website-context7.com-blue)](https://context7.com) [![smithery badge](https://smithery.ai/badge/@upstash/context7-mcp)](https://smithery.ai/server/@upstash/context7-mcp) [<img alt="Install in VS Code (npx)" src="https://img.shields.io/badge/VS_Code-VS_Code?style=flat-square&label=Install%20Context7%20MCP&color=0098FF">](https://insiders.vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%7B%22name%22%3A%22context7%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40upstash%2Fcontext7-mcp%40latest%22%5D%7D)
 
-[![繁體中文](https://img.shields.io/badge/docs-繁體中文-yellow)](./docs/README.zh-TW.md) [![簡體中文](https://img.shields.io/badge/docs-簡體中文-yellow)](./docs/README.zh-CN.md) [![한국어 문서](https://img.shields.io/badge/docs-한국어-green)](./docs/README.ko.md) [![Documentación en Español](https://img.shields.io/badge/docs-Español-orange)](./docs/README.es.md) [![Documentation en Français](https://img.shields.io/badge/docs-Français-blue)](./docs/README.fr.md) [![Documentação em Português (Brasil)](<https://img.shields.io/badge/docs-Português%20(Brasil)-purple>)](./docs/README.pt-BR.md) [![Documentazione in italiano](https://img.shields.io/badge/docs-Italian-red)](./docs/README.it.md) [![Dokumentasi Bahasa Indonesia](https://img.shields.io/badge/docs-Bahasa%20Indonesia-pink)](./docs/README.id-ID.md) [![Dokumentation auf Deutsch](https://img.shields.io/badge/docs-Deutsch-darkgreen)](./docs/README.de.md) [![Документация на русском языке](https://img.shields.io/badge/docs-Русский-darkblue)](./docs/README.ru.md) [![Türkçe Doküman](https://img.shields.io/badge/docs-Türkçe-blue)](./docs/README.tr.md) [![Arabic Documentation](https://img.shields.io/badge/docs-Arabic-white)](./docs/README.ar.md)
+[![繁體中文](https://img.shields.io/badge/docs-繁體中文-yellow)](./docs/README.zh-TW.md) [![简体中文](https://img.shields.io/badge/docs-简体中文-yellow)](./docs/README.zh-CN.md) [![日本語](https://img.shields.io/badge/docs-日本語-b7003a)](./docs/README.ja.md) [![한국어 문서](https://img.shields.io/badge/docs-한국어-green)](./docs/README.ko.md) [![Documentación en Español](https://img.shields.io/badge/docs-Español-orange)](./docs/README.es.md) [![Documentation en Français](https://img.shields.io/badge/docs-Français-blue)](./docs/README.fr.md) [![Documentação em Português (Brasil)](<https://img.shields.io/badge/docs-Português%20(Brasil)-purple>)](./docs/README.pt-BR.md) [![Documentazione in italiano](https://img.shields.io/badge/docs-Italian-red)](./docs/README.it.md) [![Dokumentasi Bahasa Indonesia](https://img.shields.io/badge/docs-Bahasa%20Indonesia-pink)](./docs/README.id-ID.md) [![Dokumentation auf Deutsch](https://img.shields.io/badge/docs-Deutsch-darkgreen)](./docs/README.de.md) [![Документация на русском языке](https://img.shields.io/badge/docs-Русский-darkblue)](./docs/README.ru.md) [![Türkçe Doküman](https://img.shields.io/badge/docs-Türkçe-blue)](./docs/README.tr.md) [![Arabic Documentation](https://img.shields.io/badge/docs-Arabic-white)](./docs/README.ar.md)
 
 ## ❌ Without Context7
 
@@ -124,7 +124,7 @@ Pasting the following configuration into your Cursor `~/.cursor/mcp.json` file i
   "mcpServers": {
     "context7": {
       "command": "deno",
-      "args": ["run", "--allow-env", "--allow-net", "npm:@upstash/context7-mcp"]
+      "args": ["run", "--allow-env=NO_DEPRECATION,TRACE_DEPRECATION", "--allow-net", "npm:@upstash/context7-mcp"]
     }
   }
 }
@@ -204,6 +204,45 @@ Add this to your VS Code MCP config file. See [VS Code MCP docs](https://code.vi
 </details>
 
 <details>
+<summary><b>Install in Visual Studio 2022</b></summary>
+
+You can configure Context7 MCP in Visual Studio 2022 by following the [Visual Studio MCP Servers documentation](https://learn.microsoft.com/visualstudio/ide/mcp-servers?view=vs-2022).
+
+Add this to your Visual Studio MCP config file (see the [Visual Studio docs](https://learn.microsoft.com/visualstudio/ide/mcp-servers?view=vs-2022) for details):
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "context7": {
+        "type": "http",
+        "url": "https://mcp.context7.com/mcp"
+      }
+    }
+  }
+}
+```
+
+Or, for a local server:
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "context7": {
+        "type": "stdio",
+        "command": "npx",
+        "args": ["-y", "@upstash/context7-mcp"]
+      }
+    }
+  }
+}
+```
+
+For more information and troubleshooting, refer to the [Visual Studio MCP Servers documentation](https://learn.microsoft.com/visualstudio/ide/mcp-servers?view=vs-2022).
+</details>
+
+<details>
 <summary><b>Install in Zed</b></summary>
 
 It can be installed via [Zed Extensions](https://zed.dev/extensions?query=Context7) or you can add this to your Zed `settings.json`. See [Zed Context Server docs](https://zed.dev/docs/assistant/context-servers) for more info.
@@ -225,11 +264,40 @@ It can be installed via [Zed Extensions](https://zed.dev/extensions?query=Contex
 </details>
 
 <details>
+<summary><b>Install in Gemini CLI</b></summary>
+
+See [Gemini CLI Configuration](https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/configuration.md) for details.
+
+1.  Open the Gemini CLI settings file. The location is `~/.gemini/settings.json` (where `~` is your home directory).
+2.  Add the following to the `mcpServers` object in your `settings.json` file:
+
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    }
+  }
+}
+```
+
+If the `mcpServers` object does not exist, create it.
+
+</details>
+
+<details>
 <summary><b>Install in Claude Code</b></summary>
 
 Run this command. See [Claude Code MCP docs](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials#set-up-model-context-protocol-mcp) for more info.
 
 #### Claude Code Remote Server Connection
+
+```sh
+claude mcp add --transport http context7 https://mcp.context7.com/mcp
+```
+
+Or using SSE transport:
 
 ```sh
 claude mcp add --transport sse context7 https://mcp.context7.com/sse
@@ -258,6 +326,20 @@ Add this to your Claude Desktop `claude_desktop_config.json` file. See [Claude D
   }
 }
 ```
+
+</details>
+
+<details>
+<summary>
+<b>Install in Cline</b>
+</summary>
+
+You can easily install Context7 through the [Cline MCP Server Marketplace](https://cline.bot/mcp-marketplace) by following these instructions:
+
+1. Open **Cline**.
+1. Click the hamburger menu icon (☰) to enter the **MCP Servers** section.
+2. Use the search bar within the **Marketplace** tab to find *Context7*.
+3. Click the **Install** button.
 
 </details>
 
@@ -364,24 +446,43 @@ The configuration on Windows is slightly different compared to Linux or macOS (_
 <details>
 <summary><b>Install in Augment Code</b></summary>
 
-To configure Context7 MCP in Augment Code, follow these steps:
+To configure Context7 MCP in Augment Code, you can use either the graphical interface or manual configuration.
+
+### **A. Using the Augment Code UI**
+
+1. Click the hamburger menu.
+2. Select **Settings**.
+3. Navigate to the **Tools** section.
+4. Click the **+ Add MCP** button.
+5. Enter the following command:
+
+   ```
+   npx -y @upstash/context7-mcp@latest
+   ```
+
+6. Name the MCP: **Context7**.
+7. Click the **Add** button.
+
+Once the MCP server is added, you can start using Context7's up-to-date code documentation features directly within Augment Code.
+
+---
+
+### **B. Manual Configuration**
 
 1. Press Cmd/Ctrl Shift P or go to the hamburger menu in the Augment panel
 2. Select Edit Settings
 3. Under Advanced, click Edit in settings.json
 4. Add the server configuration to the `mcpServers` array in the `augment.advanced` object
 
-```json
 "augment.advanced": {
-    "mcpServers": [
-        {
-            "name": "context7",
-            "command": "npx",
-            "args": ["-y", "@upstash/context7-mcp"]
-        }
-    ]
+"mcpServers": [
+{
+"name": "context7",
+"command": "npx",
+"args": ["-y", "@upstash/context7-mcp"]
 }
-```
+]
+}
 
 Once the MCP server is added, restart your editor. If you receive any errors, check the syntax to make sure closing brackets or commas are not missing.
 
@@ -459,6 +560,80 @@ Add this to your Amazon Q Developer CLI configuration file. See [Amazon Q Develo
   }
 }
 ```
+</details>
+
+<details>
+<summary><b>Install in Qodo Gen</b></summary>
+
+See [Qodo Gen docs](https://docs.qodo.ai/qodo-documentation/qodo-gen/qodo-gen-chat/agentic-mode/agentic-tools-mcps) for more details.
+
+1. Open Qodo Gen chat panel in VSCode or IntelliJ.
+2. Click Connect more tools.
+3. Click + Add new MCP.
+4. Add the following configuration:
+
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "url": "https://mcp.context7.com/mcp"
+    }
+  }
+}
+```
+</details>
+
+<details>
+<summary><b>Install in JetBrains AI Assistant</b></summary>
+
+See [JetBrains AI Assistant Documentation](https://www.jetbrains.com/help/ai-assistant/configure-an-mcp-server.html) for more details.
+
+1. In JetBrains IDEs go to `Settings` -> `Tools` -> `AI Assistant` -> `Model Context Protocol (MCP)`
+2. Click `+ Add`.
+3. Click on `Command` in the top-left corner of the dialog and select the As JSON option from the list
+4. Add this configuration and click `OK`
+
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    }
+  }
+}
+```
+
+5. Click `Apply` to save changes.
+
+</details>
+
+<details>
+<summary><b>Install in Warp</b></summary>
+
+See [Warp Model Context Protocol Documentation](https://docs.warp.dev/knowledge-and-collaboration/mcp#adding-an-mcp-server) for details.
+
+1. Navigate `Settings` > `AI` > `Manage MCP servers`.
+2. Add a new MCP server by clicking the `+ Add` button.
+3. Paste the configuration given below:
+
+```json
+{
+  "Context7": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@upstash/context7-mcp"
+    ],
+    "env": {},
+    "working_directory": null,
+    "start_on_launch": true
+  }
+}
+```
+
+4. Click `Save` to apply the changes.
+
 </details>
 
 ## 🔨 Available Tools
